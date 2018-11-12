@@ -1,6 +1,7 @@
 ## Java重要知识点备忘
 
 * concurrent 并发包
+
     * 线程池
          1. newFixedThreadPool和newSingleThreadExecutor:
              * 主要问题是堆积的请求处理队列可能会耗费非常大的内存，甚至OOM。
@@ -11,5 +12,7 @@
 * container 容器
     * 非并发容器
     * 并发容器
+    
+        ![collections](imgs/collections.png)
         * CopyOnWrite
 * future
