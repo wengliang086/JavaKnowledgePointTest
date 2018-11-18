@@ -68,8 +68,43 @@ public class FileClassLoader extends ClassLoader {
         try {
             Class<?> aClass = fileClassLoader.loadClass(className);
             System.out.println(aClass.newInstance());
+            /**
+             * 测试
+             */
+            testEqual();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 在JVM中表示两个class对象是否为同一个类对象存在两个必要条件
+     * <p>
+     * 类的完整类名必须一致，包括包名。
+     * 加载这个类的ClassLoader(指ClassLoader实例对象)必须相同。
+     */
+    private static void testEqual() throws ClassNotFoundException {
+        String rootDir = "D:/Workspaces/ForIDEA/JavaKnowledgePointTest/src";
+        String className = "com.my.test.classloader.DynamicLoadObj";
+        //创建两个不同的自定义类加载器实例
+        FileClassLoader loader1 = new FileClassLoader(rootDir);
+        FileClassLoader loader2 = new FileClassLoader(rootDir);
+        boolean findClassOrLoadClass = false;
+        Class<?> class1 = null;
+        Class<?> class2 = null;
+        if (findClassOrLoadClass) {
+            //通过findClass创建类的Class对象(避免从缓存查找)
+            class1 = loader1.findClass(className);
+            class2 = loader2.findClass(className);
+        } else {
+            /**
+             * 跟博客上面说的不一样，需要再进行研究和验证
+             */
+            class1 = loader1.loadClass(className);
+            class2 = loader2.loadClass(className);
+        }
+
+        System.out.println("findClass->obj1:" + class1.hashCode());
+        System.out.println("findClass->obj2:" + class2.hashCode());
     }
 }

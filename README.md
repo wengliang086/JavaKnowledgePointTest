@@ -1,5 +1,10 @@
 ## Java重要知识点备忘
 
+* classLoader
+    * 在JVM中表示两个class对象是否为同一个类对象存在两个必要条件
+    
+        1. 类的完整类名必须一致，包括包名。
+        2. 加载这个类的ClassLoader(指ClassLoader实例对象)必须相同。
 * concurrent 并发包
 
     * 线程池
