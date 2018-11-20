@@ -1,6 +1,6 @@
 package com.my.test.rpc.rmi.server;
 
-import com.my.test.rpc.rmi.IHelloSerice;
+import com.my.test.rpc.rmi.IHelloService;
 
 import java.net.MalformedURLException;
 import java.rmi.AlreadyBoundException;
@@ -12,7 +12,7 @@ public class MyRmiServer {
 
     public static void main(String[] args) {
         try {
-            IHelloSerice helloService = new HelloServiceImpl();
+            IHelloService helloService = new HelloServiceImpl();
             // 注册中心，这个概念在RMI中很早就有了
             LocateRegistry.createRegistry(1099);
             // 将创建的对象发布到一个地址上

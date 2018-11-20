@@ -1,13 +1,17 @@
 package com.my.test.rpc.rmi.server;
 
-import com.my.test.rpc.rmi.IHelloSerice;
+import com.my.test.rpc.rmi.IHelloService;
 
-import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
-public class HelloServiceImpl implements IHelloSerice, Serializable {
+public class HelloServiceImpl extends UnicastRemoteObject implements IHelloService {
+
+    protected HelloServiceImpl() throws RemoteException {
+    }
+
     @Override
     public String sayHello(String msg) throws RemoteException {
-        return "Hello " + msg;
+        return "RMI: Hello " + msg;
     }
 }

@@ -1,6 +1,6 @@
 package com.my.test.rpc.rmi.client;
 
-import com.my.test.rpc.rmi.IHelloSerice;
+import com.my.test.rpc.rmi.IHelloService;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -11,8 +11,8 @@ public class MyRmiClient {
 
     public static void main(String[] args) {
         try {
-            IHelloSerice helloSerice = (IHelloSerice) Naming.lookup("rmi://127.0.0.1/Hello");
-            helloSerice.sayHello("Jack");
+            IHelloService helloSerice = (IHelloService) Naming.lookup("rmi://127.0.0.1/Hello");
+            System.out.println(helloSerice.sayHello("Jack"));
         } catch (NotBoundException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {
