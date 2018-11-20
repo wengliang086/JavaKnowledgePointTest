@@ -2,10 +2,7 @@ package com.my.test.rpc.myrpc.client;
 
 import com.my.test.rpc.myrpc.RpcRequest;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -27,10 +24,13 @@ public class TcpTransport {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
             objectOutputStream.writeObject(request);
             objectOutputStream.flush();
-            ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+            InputStream inputStream = socket.getInputStream();
+            ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
             Object result = objectInputStream.readObject();
             objectInputStream.close();
             objectOutputStream.close();
+            outputStream.close();
+            inputStream.close();
             return result;
         } catch (UnknownHostException e) {
             e.printStackTrace();

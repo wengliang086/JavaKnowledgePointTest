@@ -46,14 +46,20 @@ public class ProcessorHandler implements Runnable {
 
     private Object invoke(RpcRequest request) throws NoSuchMethodException {
         // 反射调用
-        Class[] parameterTypes = new Class[request.getParameters().length];
-        for (int i = 0; i < parameterTypes.length; i++) {
-            parameterTypes[i] = request.getParameters()[i].getClass();
+        Object[] args = request.getParameters();
+        Method method;
+        if (args == null) {
+            method = service.getClass().getMethod(request.getMethodName());
+        } else {
+            Class[] parameterTypes = new Class[args.length];
+            for (int i = 0; i < parameterTypes.length; i++) {
+                parameterTypes[i] = args[i].getClass();
+            }
+            method = service.getClass().getMethod(request.getMethodName(), parameterTypes);
         }
-        Method method = service.getClass().getMethod(request.getMethodName(), parameterTypes);
         Object result = null;
         try {
-            result = method.invoke(service, request.getParameters());
+            result = method.invoke(service, args);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
