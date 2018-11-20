@@ -20,4 +20,6 @@
     
         ![collections](imgs/collections.png)
         * CopyOnWrite
+* objectmemory 对象内存大小计算，运行程序，dump内存
+* web HTTP协议理解，用Socket模拟TomcatServer，可以接收并返回HTTP请求
 * future
