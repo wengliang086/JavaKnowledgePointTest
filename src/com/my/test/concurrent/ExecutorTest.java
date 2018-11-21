@@ -4,8 +4,8 @@ import java.util.concurrent.*;
 
 /**
  * 参考博客：https://www.cnblogs.com/superfj/p/7544971.html
- *           https://www.cnblogs.com/dolphin0520/p/3932921.html
- *
+ * https://www.cnblogs.com/dolphin0520/p/3932921.html
+ * <p>
  * 一般需要根据任务的类型来配置线程池大小：(NCPU = CPU的数量)
  * 　　如果是CPU密集型任务，就需要尽量压榨CPU，参考值可以设为 NCPU+1
  * 　　如果是IO密集型任务，参考值可以设置为2*NCPU
@@ -61,10 +61,11 @@ public class ExecutorTest {
     });
 
     public static void main(String[] args) {
-        System.out.println(Runtime.getRuntime().availableProcessors());
+        System.out.println("availableProcessors=" + Runtime.getRuntime().availableProcessors());
 //        testSingleThreadPool();
 //        testScheduledThreadPool();
-        testFixedThreadPool();
+//        testFixedThreadPool();
+        testCachedThreadPool();
     }
 
     private static void testFixedThreadPool() {
@@ -109,5 +110,23 @@ public class ExecutorTest {
                 }
             });
         }
+    }
+
+    private static void testCachedThreadPool() {
+        for (int i = 0; i < 10; i++) {
+            int finalI = i;
+            cachedThreadPool.execute(new Runnable() {
+                @Override
+                public void run() {
+                    System.out.println(finalI + "--" + System.currentTimeMillis() / 1000);
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+        cachedThreadPool.shutdown();
     }
 }
