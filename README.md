@@ -25,4 +25,9 @@
     1. rmi 方式实现远程方法调用
     2. ObjectInputStream 和 ObjectOutputStream 方式实现远程调用
 * web HTTP协议理解，用Socket模拟TomcatServer，可以接收并返回HTTP请求
+* thread
+    * 子线程异常处理（父线程不能捕获子线程抛出的异常）
+        1. 在子线程中 try ... catch
+        2. 设置 UncaughtExceptionHandler
+        3. 通过Future的get方法捕获异常
 * future

@@ -34,7 +34,7 @@
     因为是多服务器，所以用到了Zookeeper的目录，存放各个服务器的host和port。
     通过JMX下载 Druid Monitor 界面最后的 JSON API 中的 datasource.json 文件，并解析、存库、统计
     
-2. Nginx 统计实现
+2. Nginx 统计实现（多种方式的演变：https://www.cnblogs.com/aresxin/p/8035137.html，搭建：https://www.cnblogs.com/kevingrace/p/5919021.html）
 
     通过 elasticsearch 收集日志，具体的收集细节和 ES 的接口和使用方式
     * logstash 分为 shipper 和 indexer。
