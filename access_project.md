@@ -36,10 +36,18 @@
     
 2. Nginx 统计实现
 
-    通过 elasticsearch 收集日志，
+    通过 elasticsearch 收集日志，具体的收集细节和 ES 的接口和使用方式
+    * logstash 分为 shipper 和 indexer。
+    * shipper input读取日志后，filter过滤，再通过Redis通道output，发送出去。
+    * indexer 收集由多台shipper发送的日志，一般会把Redis安装到此主机，收到日志后发送给本机的elasticsearch
+    ![elk](imgs/elk.png)
 
 3. 异常监控
     
     全局异常处理类里面，把异常信息存库
     
-4. 各种统计的实现逻辑。。。
+4. 脚本中关于JVM参数的精通 
+5. 日志为什么要发送到 log_server 
+
+    1、部分日志需要存库，这里批量插入，避免影响业务，2、BI、热云等报送也走这里。
+6. 
