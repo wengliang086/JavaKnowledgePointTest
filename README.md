@@ -20,6 +20,22 @@
     
         ![collections](imgs/collections.png)
         * CopyOnWrite
+* Java8 新特性
+
+    1. 删除了 PermGen，类加载到JVM外的内存上Metaspace（元空间）
+    2. Lambda 表达式
+    3. 函数式接口
+    4. 方法引用
+    5. 接口默认方法
+    6. Stream API
+    7. Data Time API
+    8. Optional 类
+    
+* Java9 新特性
+
+    1. 模块系统
+    2. 。。。
+
 * objectmemory 对象内存大小计算，运行程序，dump内存
 * RPC
     1. rmi 方式实现远程方法调用
