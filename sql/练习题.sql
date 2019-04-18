@@ -39,3 +39,11 @@
 -- 32、求出员工领导的薪水超过3000的员工名称与领导姓名
 -- 33、求出部门名称中，带有‘s’字符的部门员工的工资合计、部门人数
 -- 34、给任职日期超过35年的员工加薪10%
+mysql> create table emp_bak as select * from emp;
+mysql> update emp_bak set sal = sal * 1.1 where((to_days(now()) - to_days(hiredate))/365) > 35;
+mysql> select * from emp_bak;
+
+35、求部门平均薪水，和平均薪水对应的等级
+SELECT deptno, AVG(sal) as avg from emp GROUP BY deptno;
+SELECT grade from salgrade;
+SELECT a.deptno,a.avg,s.grade FROM (SELECT deptno, AVG(sal) as avg from emp GROUP BY deptno) a JOIN salgrade s ON a.avg between s.losal and s.hisal;
